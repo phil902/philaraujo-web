@@ -97,7 +97,7 @@ export async function POST(req: Request) {
     const docx = await policyDocxBuffer(policy);
     await Promise.all([
       sendAlert({ row, id: data.id, areas: AREAS.map((a) => [a, r.averages[a]] as const) }),
-      sendResults({ lang: body.lang, name: body.contact.first_name, to: body.contact.email, firm, score: r.score, level: r.level, fixFirst: r.fixFirst, hours: tb.hours, days: tb.days, docx }),
+      sendResults({ lang: body.lang, name: body.contact.first_name, to: body.contact.email, firm, score: r.score, level: r.level, weakest: r.weakest, fixFirst: r.fixFirst, hours: tb.hours, days: tb.days, docx }),
     ]);
     await db().from("readiness_responses").update({ emailed_at: new Date().toISOString() }).eq("id", data.id);
   } catch (e) {

@@ -1,7 +1,7 @@
 import "server-only";
 import { Resend } from "resend";
-import type { Lang, LevelKey } from "@/lib/check";
-import { BANDS, FIX_TEXT } from "@/lib/copy";
+import { BOOKING_URL, type AreaKey, type Lang, type LevelKey } from "@/lib/check";
+import { BANDS, FIX_TEXT, TIPS } from "@/lib/copy";
 
 let resend: Resend | undefined;
 const client = () => (resend ??= new Resend(process.env.RESEND_API_KEY));
@@ -31,50 +31,55 @@ export async function sendAlert(x: { row: Record<string, unknown>; id: string; a
   if (error) throw new Error(`alert: ${error.message}`);
 }
 
-// DRAFT COPY, for Phil to check in his own words before launch.
+// Copy approved in outline by Phil, 7 Nov 2026 (PS = the one change that would help most).
+const LINKEDIN = "https://www.linkedin.com/in/philippearaujo";
 const RESULTS = {
   en: {
     subject: (score: number, level: string) => `Your client data check: ${score}/100, ${level}`,
     hi: (n: string) => `Hi ${n},`,
-    thanks: (score: number, level: string) => `Thanks for taking the check. Your firm came out at ${score}/100, ${level}.`,
+    thanks: (score: number, level: string, text: string) => `Thanks for taking the check. Your firm came out at ${score}/100: ${level}. ${text}`,
     fix: "What to fix first:",
     none: "Nothing urgent came up in your answers.",
     time: (h: number, d: number) => `On your numbers, AI could give you back about ${h} hours in 90 days, roughly ${d} working days.`,
-    policy: (f: string) => `Your draft AI policy for ${f} is attached as a Word file. Edit it, then adopt it. It's a starting draft, not legal advice.`,
-    call: "If you want to go through it together, reply to this email and we'll find 30 minutes.",
+    policy: "Your draft AI policy is attached as a Word file. The yellow bits are for you to fill in. It's a starting draft, not legal advice.",
+    call: (link: string) => `If you want to go through it together, <a href="${link}">book 30 minutes with me here</a>, or just reply to this email. If AI isn't worth it for your firm yet, I'll tell you.`,
+    ps: "PS: The one change that would help most right now:",
     firm: "your firm",
   },
   fr: {
     subject: (score: number, level: string) => `Votre diagnostic données clients : ${score}/100, ${level}`,
     hi: (n: string) => `Bonjour ${n},`,
-    thanks: (score: number, level: string) => `Merci d'avoir fait le diagnostic. Votre cabinet obtient ${score}/100, ${level}.`,
+    thanks: (score: number, level: string, text: string) => `Merci d'avoir fait le diagnostic. Votre cabinet obtient ${score}/100 : ${level}. ${text}`,
     fix: "À traiter en premier :",
     none: "Aucun risque urgent dans vos réponses.",
     time: (h: number, d: number) => `Avec vos chiffres, l'IA pourrait vous rendre environ ${h} heures en 90 jours, soit environ ${d} jours de travail.`,
-    policy: (f: string) => `Votre projet de charte IA pour ${f} est en pièce jointe, en Word. Modifiez-la, puis adoptez-la. C'est un premier projet, pas un avis juridique.`,
-    call: "Si vous voulez la parcourir ensemble, répondez à cet email et on trouve 30 minutes.",
+    policy: "Votre projet de charte IA est en pièce jointe, en Word. Les passages en jaune sont à compléter. C'est un premier projet, pas un avis juridique.",
+    call: (link: string) => `Si vous voulez la parcourir ensemble, <a href="${link}">réservez 30 minutes avec moi ici</a>, ou répondez simplement à cet email. Si l'IA ne vaut pas encore le coup pour votre cabinet, je vous le dirai.`,
+    ps: "PS : Le changement qui aiderait le plus en ce moment :",
     firm: "votre cabinet",
   },
 } as const;
 
 export async function sendResults(x: {
-  lang: Lang; name: string; to: string; firm: string | null; score: number; level: LevelKey;
+  lang: Lang; name: string; to: string; firm: string | null; score: number; level: LevelKey; weakest: AreaKey;
   fixFirst: number[]; hours: number; days: number; docx: Buffer;
 }) {
   const c = RESULTS[x.lang];
   const level = BANDS[x.level].name[x.lang];
+  const levelText = BANDS[x.level].text[x.lang];
   const fixes = x.fixFirst.map((n) => FIX_TEXT[n]?.[x.lang]).filter(Boolean) as string[];
   const p = (s: string) => `<p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;margin:0 0 14px">${s}</p>`;
   const html = [
     p(esc(c.hi(x.name))),
-    p(esc(c.thanks(x.score, level))),
+    p(esc(c.thanks(x.score, level, levelText))),
     fixes.length
       ? p(`<strong>${esc(c.fix)}</strong>`) + `<ul style="font-family:Arial,sans-serif;font-size:15px;line-height:1.5;margin:0 0 14px">${fixes.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>`
       : p(esc(c.none)),
     p(esc(c.time(x.hours, x.days))),
-    p(esc(c.policy(x.firm || c.firm))),
-    p(esc(c.call)),
-    p("Phil"),
+    p(esc(c.policy)),
+    p(c.call(BOOKING_URL)),
+    p(`Phil<br><a href="${LINKEDIN}" style="color:#667">linkedin.com/in/philippearaujo</a>`),
+    p(`${esc(c.ps)} ${esc(TIPS[x.weakest][x.lang])}`),
   ].join("");
   const file = `${(x.firm || c.firm).replace(/[^\p{L}\p{N}]+/gu, "-")}-${x.lang === "fr" ? "charte-IA" : "AI-policy"}.docx`;
   const { error } = await client().emails.send({

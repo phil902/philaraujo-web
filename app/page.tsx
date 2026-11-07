@@ -12,6 +12,7 @@ import {
 import { BRAND, AREA_NAMES, BANDS, FIX_TEXT, OFFERS, PAGE, POLICY_UI, PROFILE, QUESTION_TEXT, TIME_FIELDS, TIPS, TOOLS_Q, UI, type ProfileKey } from "@/lib/copy";
 import { buildPolicy, POLICY_STORAGE_KEY, type PolicyInput } from "@/lib/policy";
 import { num1, tr } from "@/lib/i18n";
+import { Landing } from "@/components/Landing";
 
 type Step = "intro" | "profile" | "questions" | "time" | "contact" | "results";
 type Profile = Record<ProfileKey, string>;
@@ -111,7 +112,7 @@ export default function Index() {
       {step !== "results" && head}
 
       {step === "intro" && (
-        <main className="relative mx-auto grid w-full max-w-5xl content-start gap-10 md:flex-1 px-5 pb-16 pt-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:content-center md:items-center">
+        <main className="relative mx-auto grid w-full max-w-5xl content-start gap-10 md:min-h-[78vh] px-5 pb-16 pt-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:content-center md:items-center">
           <section className="min-w-0 space-y-7">
             <p className="mono-label font-semibold text-teal">{t(BRAND.eyebrow)}</p>
             <h1 className="font-display text-[40px] font-extrabold leading-[1.05] text-ink sm:text-6xl sm:[&>span]:whitespace-nowrap">
@@ -135,6 +136,7 @@ export default function Index() {
           </div>
         </main>
       )}
+      {step === "intro" && <Landing lang={lang} onStart={() => setStep("profile")} />}
 
       {step !== "intro" && step !== "results" && (
         <main className="relative mx-auto w-full max-w-xl flex-1 px-5 pb-16 pt-4">

@@ -1,4 +1,4 @@
-export const BOOKING_URL = "";
+export const BOOKING_URL = "https://cal.com/philippe-araujo-1zmo7a/30min";
 
 export type Lang = "en" | "fr";
 export type AreaKey = "data" | "team" | "rules" | "knowledge" | "time";
