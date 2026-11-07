@@ -6,7 +6,8 @@ Source of truth for the plan: Phil's vault, `_index/the-plan.md`, workstream E.
 
 ## Decisions
 - Next.js App Router, Tailwind 4, TypeScript. The check page and the print page are client components.
-- The browser never talks to the database. The form posts to `app/api/submit/route.ts`, which validates with zod, recomputes the score on the server from the answers (never trusts client numbers), inserts with the service role key, then sends two emails through Resend: the alert to Phil and the results to the person (with a link to their policy).
+- The browser never talks to the database. The form posts to `app/api/submit/route.ts`, which validates with zod, recomputes the score on the server from the answers (never trusts client numbers), inserts with the service role key, then sends two emails through Resend: the alert to Phil and the results to the person, with their Word policy attached.
+- Vercel functions run in London (`lhr1`, set in `vercel.json`), next to the database.
 - Supabase project in West Europe (London). Schema in `supabase/migrations/`. RLS on, no grants to anon or authenticated.
 - Keep `lib/check.ts`, `lib/copy.ts`, `lib/policy.ts`, `lib/policy-docx.ts`, `lib/nodes.ts` and their tests as ported from Lovable; they are verified (6 Nov end-to-end test).
 - No Lovable packages, no Lovable badge, no error-reporting to Lovable.
