@@ -1,0 +1,177 @@
+@import "tailwindcss" source(none);
+@source "../app";
+@source "../components";
+@source "../lib";
+@import "tw-animate-css";
+@import "@fontsource/archivo/700.css";
+@import "@fontsource/archivo/800.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  /* brand surface tokens, re-scoped by .surface-dark / .surface-light */
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-rail: var(--rail);
+  --color-teal: var(--teal);
+  --color-teal-ink: var(--teal-ink);
+  --color-core: var(--core);
+  --color-crimson: var(--crimson);
+  --color-navy: var(--navy);
+  --color-on-navy: var(--on-navy);
+  --color-on-teal: var(--on-teal);
+  --color-tile: var(--tile);
+}
+
+:root {
+  --radius: 0.5rem;
+  --navy: #0B1424;
+  --on-navy: #FFFFFF;
+  --on-teal: #04070E;
+  --tile: #FFFFFF;
+  /* light surface defaults */
+  --ink: #0B1424;
+  --soft: #4A5B73;
+  --rail: #D5DCE6;
+  --teal: #1F9E8B;
+  --teal-ink: #167466; /* teal for small text on light, keeps 4.5:1 */
+  --core: #2B7FB8;
+  --crimson: #C0303F;
+  --halo-opacity: 0.16;
+  --star: #C3CCDA;
+  --link: #D5DCE6;
+
+  --background: #F4F6F9;
+  --foreground: #0B1424;
+  --card: #FFFFFF;
+  --card-foreground: #0B1424;
+  --primary: #0B1424;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E9EDF3;
+  --secondary-foreground: #0B1424;
+  --muted: #E9EDF3;
+  --muted-foreground: #4A5B73;
+  --accent: #E9EDF3;
+  --accent-foreground: #0B1424;
+  --destructive: #C0303F;
+  --border: #D5DCE6;
+  --input: #D5DCE6;
+  --ring: #1F9E8B;
+}
+
+.surface-light {
+  --ink: #0B1424;
+  --soft: #4A5B73;
+  --rail: #D5DCE6;
+  --teal: #1F9E8B;
+  --teal-ink: #167466;
+  --core: #2B7FB8;
+  --crimson: #C0303F;
+  --star: #C3CCDA;
+  --link: #D5DCE6;
+  --halo-opacity: 0.16;
+  color: var(--ink);
+  background: linear-gradient(180deg, #F4F6F9, #E9EDF3);
+}
+
+.surface-dark {
+  --ink: #E8F0FB;
+  --soft: #93A6C0;
+  --rail: #1B2C45;
+  --teal: #3FC3AE;
+  --teal-ink: #3FC3AE;
+  --core: #7FD8FF;
+  --crimson: #D8465A;
+  --star: #2A4165;
+  --link: #1B2C45;
+  --halo-opacity: 0.28;
+  color: var(--ink);
+  background: linear-gradient(180deg, #04070E, #0A1120);
+}
+
+.glow {
+  background: radial-gradient(closest-side, #16243C, transparent);
+}
+
+.logo-white {
+  filter: brightness(0) invert(1);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; }
+  input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 9999px; background: var(--teal); }
+  input[type="range"]::-moz-range-track { height: 4px; border-radius: 9999px; background: var(--teal); }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; margin-top: -8px; border-radius: 9999px; background: var(--tile); border: 2px solid var(--teal); }
+  input[type="range"]::-moz-range-thumb { height: 16px; width: 16px; border-radius: 9999px; background: var(--tile); border: 2px solid var(--teal); }
+}
+
+/* Printable policy view: plain white document */
+.policy-page { background: #fff; color: #111; min-height: 100vh; padding: 32px 20px 64px; font-family: Inter, Arial, sans-serif; }
+.policy-toolbar { max-width: 780px; margin: 0 auto 24px; }
+.policy-toolbar button { border: 1px solid #111; border-radius: 6px; padding: 10px 16px; font-weight: 600; }
+.policy-doc { max-width: 780px; margin: 0 auto; font-size: 14px; line-height: 1.55; }
+.policy-doc h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.policy-doc h2 { font-size: 17px; font-weight: 700; margin: 22px 0 6px; break-after: avoid; }
+.policy-doc p { margin: 0 0 8px; }
+.policy-doc .policy-meta { font-size: 12px; margin-bottom: 18px; }
+.policy-doc ul { list-style: disc; padding-left: 22px; margin: 0 0 8px; }
+.policy-doc li { margin-bottom: 4px; }
+.policy-doc hr { border: 0; border-top: 1px solid #999; margin: 20px 0; }
+.policy-doc .policy-blank { background: #fff200; }
+.policy-table-wrap { overflow-x: auto; }
+.policy-doc table { border-collapse: collapse; width: 100%; font-size: 11px; }
+.policy-doc th, .policy-doc td { border: 1px solid #999; padding: 4px 6px; text-align: left; vertical-align: top; }
+@media print {
+  @page { margin: 18mm; }
+  .policy-page { padding: 0; }
+  .policy-toolbar { display: none; }
+  .policy-doc .policy-blank { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
