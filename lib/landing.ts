@@ -9,9 +9,9 @@ export const LANDING = {
     fr: "Vous détenez des données clients et vous en répondez. Être prudent, ce n'est pas être en retard.",
   } as T,
   questions: [
-    { en: "Do you know where your client data goes when someone pastes it into ChatGPT, Gemini or Copilot?", fr: "Savez-vous où vont vos données clients quand quelqu'un les colle dans ChatGPT, Gemini ou Copilot ?" },
+    { en: "Do you know where your client data goes when someone on your team pastes it into ChatGPT or Gemini?", fr: "Savez-vous où vont vos données clients quand quelqu'un de votre équipe les colle dans ChatGPT ou Gemini ?" },
     { en: "Is someone on your team already using an AI tool you never approved?", fr: "Quelqu'un dans votre équipe utilise-t-il déjà un outil d'IA que vous n'avez jamais validé ?" },
-    { en: "Do your rules on AI match how your team actually works today?", fr: "Vos règles sur l'IA correspondent-elles à la façon dont votre équipe travaille vraiment aujourd'hui ?" },
+    { en: "Are your AI policies up to scratch for how your team works today?", fr: "Vos règles sur l'IA sont-elles à la hauteur de la façon dont votre équipe travaille aujourd'hui ?" },
     { en: "When someone senior leaves, does what they know about your clients leave with them?", fr: "Quand un senior s'en va, ce qu'il sait de vos clients part-il avec lui ?" },
   ] as T[],
   pause: {
@@ -20,8 +20,8 @@ export const LANDING = {
   } as T,
   whatLabel: { en: "WHAT I PUT IN PLACE", fr: "CE QUE JE METS EN PLACE" } as T,
   what: {
-    en: "Everything your firm knows, in one place you own. Ask it a question in plain English and it answers, showing where the answer came from. Then a day with your team, so they use it well, with clear rules on what can and can't go into AI.",
-    fr: "Tout ce que sait votre cabinet, au même endroit, et qui vous appartient. Posez-lui une question en langage courant et il répond, en montrant d'où vient la réponse. Puis une journée avec votre équipe, pour qu'elle s'en serve bien, avec des règles claires sur ce qui peut aller dans l'IA et ce qui ne le peut pas.",
+    en: "Everything your firm knows, in one place you own. Ask it what's outstanding on a client, what's changed since you last saw them, or what was decided six months ago, and it answers, showing where it found it. Then a day with your team, so they use it well, with clear rules on what can and can't go into AI.",
+    fr: "Tout ce que sait votre cabinet, au même endroit, et qui vous appartient. Demandez-lui ce qui reste à faire pour un client, ce qui a changé depuis votre dernier rendez-vous, ou ce qui a été décidé il y a six mois, et il répond, en montrant où il l'a trouvé. Puis une journée avec votre équipe, pour qu'elle s'en serve bien, avec des règles claires sur ce qui peut aller dans l'IA et ce qui ne le peut pas.",
   } as T,
   safeLabel: { en: "HOW YOUR CLIENT DATA STAYS SAFE", fr: "COMMENT VOS DONNÉES CLIENTS RESTENT PROTÉGÉES" } as T,
   safe: [
@@ -30,7 +30,7 @@ export const LANDING = {
     { title: { en: "Never used to train AI.", fr: "Jamais utilisées pour entraîner une IA." }, text: { en: "Nothing you put in is used to improve anyone's AI.", fr: "Rien de ce que vous y mettez ne sert à améliorer l'IA de qui que ce soit." } },
     { title: { en: "Each person sees their part.", fr: "Chacun voit sa partie." }, text: { en: "You decide who sees what.", fr: "Vous décidez qui voit quoi." } },
     { title: { en: "Yours to keep.", fr: "À vous, pour de bon." }, text: { en: "If we stop working together, everything stays with you.", fr: "Si nous arrêtons de travailler ensemble, tout reste chez vous." } },
-    { title: { en: "In writing too.", fr: "Par écrit aussi." }, text: { en: "A signed agreement on how your data is handled.", fr: "Un accord signé sur la façon dont vos données sont traitées." } },
+    { title: { en: "In writing too.", fr: "Par écrit aussi." }, text: { en: "A data sharing agreement with your firm, signed.", fr: "Un accord de partage de données avec votre cabinet, signé." } },
   ],
   callLabel: { en: "FREE, TO START", fr: "GRATUIT, POUR COMMENCER" } as T,
   callTitle: { en: "A 30-minute call", fr: "Un appel de 30 minutes" } as T,
@@ -39,7 +39,7 @@ export const LANDING = {
     fr: "Un processus de votre cabinet, où l'IA a sa place, et si ça vaut le coup. Si ce n'est pas le cas, je vous le dirai.",
   } as T,
   callButton: { en: "Book a call", fr: "Réserver un appel" } as T,
-  orCheck: { en: "Or take the five-minute check first", fr: "Ou faites d'abord le diagnostic en 5 minutes" } as T,
+  orCheck: { en: "Or see where you stand in five minutes", fr: "Ou voyez où vous en êtes en 5 minutes" } as T,
   aboutLine: { en: "I help regulated firms get onto AI safely, and keep what they know.", fr: "J'aide les cabinets réglementés à passer à l'IA en sécurité, et à garder ce qu'ils savent." } as T,
   stats: [
     { big: { en: "20 years", fr: "20 ans" }, small: { en: "in tech, from product manager to head of product", fr: "dans la tech, de chef de produit à directeur produit" } },
