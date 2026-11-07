@@ -311,8 +311,8 @@ export const OFFERS: Record<OfferKey, { title: T; text: T }> = {
   brain: {
     title: { en: "A company brain, on infrastructure you control", fr: "Un cerveau d'entreprise, sur une infrastructure que vous maîtrisez" },
     text: {
-      en: "Everything your firm knows, in one place you own and can ask. Stored in the UK on a server you own, and client data never goes to a public AI service.",
-      fr: "Tout ce que sait votre cabinet, au même endroit, qui vous appartient et que vous pouvez interroger. Stocké au Royaume-Uni sur un serveur qui vous appartient, et les données clients ne vont jamais vers un service d'IA public.",
+      en: "Everything your firm knows, in one place you own and can ask. Kept in the UK, on a system that belongs to you, and your client data never goes into a free or public AI tool.",
+      fr: "Tout ce que sait votre cabinet, au même endroit, qui vous appartient et que vous pouvez interroger. Gardé au Royaume-Uni, sur un système qui vous appartient, et vos données clients ne vont jamais dans un outil d'IA gratuit ou public.",
     },
   },
   training: {

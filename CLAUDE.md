@@ -13,7 +13,7 @@ Source of truth for the plan: Phil's vault, `_index/the-plan.md`, workstream E.
 - No Lovable packages, no Lovable badge, no error-reporting to Lovable.
 
 ## The four fixes from the 6 Nov test
-1. Offer wording in `lib/copy.ts`: company brain "Everything your firm knows, in one place you own and can ask. Stored in the UK on a server you own, and client data never goes to a public AI service."; personal title "Your own AI system, that you own" (FR to match).
+1. Offer wording in `lib/copy.ts` (plain words of one-pager C, 7 Nov): company brain "Everything your firm knows, in one place you own and can ask. Kept in the UK, on a system that belongs to you, and your client data never goes into a free or public AI tool."; personal title "Your own AI system, that you own" (FR to match).
 2. French: decimals with a comma (4,0) via `toLocaleString(lang)`; a non-breaking space before ? : ! in FR strings so they never sit alone.
 3. Labels on the name, email and firm inputs (`htmlFor`/`id`).
 4. No Lovable badge.
